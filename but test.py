@@ -29,12 +29,12 @@ class mine:
         self.efficiency = efficiency
         self.cost = cost
         self.text = Button(window, text=f'ШАХТА {self.efficiency}', width=10, height=5, state=["disabled"])
-        self.text.place(x=WIDTH * 0.1, y=HEIGHT / 3+self.pos*HEIGHT*0.15, width=WIDTH * 0.18, height=HEIGHT * 0.13)
+        self.text.place(relx=0.1, rely = 0.34 + self.pos*0.15, relwidth=0.18, relheight=0.13)
 
 
 
         self.btn = Button(window, text='lvl up', command=self.lvluped, width=10, height=5)
-        self.btn.place(x = WIDTH*0.28, y = HEIGHT/3 +self.pos*HEIGHT*0.15, width = WIDTH*0.08, height = HEIGHT*0.13)
+        self.btn.place(relx = 0.28, rely = 0.34 + self.pos*0.15, relwidth = 0.08, relheight = 0.13)
 
 
 
@@ -43,21 +43,12 @@ class mine:
         self.efficiency += 1
         print('lvl up', self)
 
-
-
-
-
-
-
 m1 = mine(pos=1)
 m2 = mine(pos=2)
 m3 = mine(pos=3)
 
-
-while True:
-
-
-    root.update()
+root.update()
+root.mainloop()
 
 
 
