@@ -1,4 +1,6 @@
 import tkinter
+from screeninfo import get_monitors
+WIDTH, HEIGHT = get_monitors()[0].width, get_monitors()[0].height
 def main():
     """Главная функция главного модуля.
     Создаёт объекты графического дизайна библиотеки tkinter: окно, холст, фрейм с кнопками, кнопки.
@@ -8,8 +10,7 @@ def main():
     physical_time = 0
 
     root = tkinter.Tk()
-    # космическое пространство отображается на холсте типа Canvas
-    space = tkinter.Canvas(root, width=600, height=400, bg="red")
+    space = tkinter.Canvas(root, width=WIDTH, height=HEIGHT, bg="red")
     space.pack(side=tkinter.TOP)
 
 
