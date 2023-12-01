@@ -1,7 +1,6 @@
-import tkinter
+from tkinter import *
 from screeninfo import get_monitors
 WIDTH, HEIGHT = get_monitors()[0].width, get_monitors()[0].height
-
 
 def main():
     """Главная функция главного модуля.
@@ -11,32 +10,23 @@ def main():
 
     def Start():
         root.destroy()
-        window = tkinter.Tk()
+        window = Tk()
         window.title("Новое окно")
-        space = tkinter.Canvas(window, width=WIDTH, height=HEIGHT, bg="blue")
-        space.pack(side=tkinter.TOP)
+        space = Canvas(window, width=WIDTH, height=HEIGHT, bg="white")
+        space.pack(side=TOP)
 
-    root = tkinter.Tk()
+    root = Tk()
     root.title("ОхаЁ")
-    root['bg']='blue'
+    root['bg']='white'
     root.geometry(f'{WIDTH}x{HEIGHT}')
 
-    button = tkinter.Button(compound=tkinter.CENTER,text="Новая игра",
+    button = Button(compound=CENTER,text="Новая игра",
                             font=("Arial Bold", 30),command=Start,
-                            bg="blue", fg="yellow",width=20)
+                            bg="white", fg="black",width=20)
     button.pack()
-
-
-
-
-
-
-
-
-
-
-
+    button.place(x=WIDTH//2.8, y=HEIGHT//4, width=WIDTH//4, height=HEIGHT//3)
     root.mainloop()
+
 
 if __name__ == "__main__":
     main()
