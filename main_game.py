@@ -6,12 +6,10 @@ def main():
     """Главная функция главного модуля.
     Создаёт объекты графического дизайна библиотеки tkinter: окно, холст, фрейм с кнопками, кнопки.
     """
-
-
     def Start():
         root.destroy()
         window = Tk()
-        window.title("Новое окно")
+        window.title("КликКлак")
         space = Canvas(window, width=WIDTH, height=HEIGHT, bg="white")
         space.pack(side=TOP)
 
@@ -24,7 +22,7 @@ def main():
                             font=("Arial Bold", 30),command=Start,
                             bg="white", fg="black",width=20)
     button.pack()
-    button.place(x=WIDTH//2.8, y=HEIGHT//4, width=WIDTH//4, height=HEIGHT//3)
+    button.place(relx=0.36, rely=0.25, relwidth=0.25, relheight=0.33)
     root.mainloop()
 
 
