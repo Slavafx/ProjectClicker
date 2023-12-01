@@ -1,53 +1,27 @@
-# Import module
 from tkinter import *
-
-# Create object
 root = Tk()
+class mine:
+    def __init__(self, lvl=0, efficiency=0, cost=0, window=root, pos=1):
+        self.pos = pos - 1
+        self.lvl = lvl
+        self.window = window
+        self.efficiency = efficiency
+        self.cost = cost
+        self.text = Button(window, text=f'ШАХТА {self.efficiency}', width=10, height=5, state=["disabled"])
+        self.text.place(relx=0.1, rely=0.34 + self.pos * 0.15, relwidth=0.18, relheight=0.13)
 
-# Adjust size
-root.geometry("400x400")
+        self.btn = Button(window, text='lvl up', command=self.lvluped, width=10, height=5)
+        self.btn.place(relx=0.28, rely=0.34 + self.pos * 0.15, relwidth=0.08, relheight=0.13)
 
-# Specify Grid
-Grid.columnconfigure(root, index=0,
-                     weight=1)
+    def __str__(self):
+        return str(self.pos + 1)
 
-Grid.rowconfigure(root, 0,
-                  weight=1)
+    def lvluped(self):
+        self.efficiency += 1
+        print('lvl up', self)
 
-# Create Buttons
-button_1 = Button(root, text="Button 1")
-
-# Set grid
-button_1.grid(row=0,
-              column=0, sticky="NSEW")
-
-
-# resize button text size
-def resize(e):
-    # get window width
-    size = e.width / 100
-
-    # define text size on different condition
-
-    # if window height is greater
-    # than 300 and less than 400 (set font size 40)
-    if e.height <= 400 and e.height > 300:
-        button_1.config(font=("Helvetica", 40))
-
-    # if window height is greater than
-    # 200 and less than 300 (set font size 30)
-    elif e.height < 300 and e.height > 200:
-        button_1.config(font=("Helvetica", 30))
-
-    # if window height is less
-    # than 200 (set font size 40)
-    elif e.height < 200:
-        button_1.config(font=("Helvetica", 40))
-
-
-# it will call resize function
-# when window size will change
-root.bind('<Configure>', resize)
-
-# Execute tkinter
-root.mainloop()
+    def mining(self):
+        '''Первая шахта должна добывать ресурсы, вторая и третья должны повышать уровень предыдущей
+        зависит от параметра loc, efficientcy
+        '''
+        pass
