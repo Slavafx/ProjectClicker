@@ -382,7 +382,7 @@ while True:
         img2 = Button(root, image=photo2, state=["disabled"])
         img2.place(relx=0.7, rely=0.45)
         image2.close()
-        print(gm.MoneyData)
+
 
 
 
