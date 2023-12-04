@@ -4,6 +4,7 @@ from screeninfo import get_monitors
 import time
 import numpy as np
 import matplotlib.pyplot as plt
+from math import *
 from PIL import Image, ImageTk
 
 root = Tk()
@@ -353,7 +354,7 @@ while True:
 
         gm.MoneyData = np.append(gm.MoneyData, gm.money)
         gm.TimeData = np.append(gm.TimeData, new_time - start_time)
-        gm.IncomeData = np.append(gm.IncomeData, gm.m1.efficiency)
+        gm.IncomeData = np.append(gm.IncomeData, gm.m1.efficiency+1, 10)
 
         fig, ax = plt.subplots()
         ax.plot(gm.TimeData, gm.MoneyData, 'k')
@@ -382,6 +383,8 @@ while True:
         img2 = Button(root, image=photo2, state=["disabled"])
         img2.place(relx=0.7, rely=0.45)
         image2.close()
+
+        plt.close(fig = 'all')
 
 
 

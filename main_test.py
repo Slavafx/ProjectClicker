@@ -70,6 +70,7 @@ def main():
             root.update()
 
     window = Tk()
+    print(1)
     window.title("ОхаЁ")
     window['bg']='white'
     window.geometry(f'{WIDTH}x{HEIGHT}')
@@ -82,6 +83,6 @@ def main():
     window.mainloop()
 
 
+
 if __name__ == "__main__":
     main()
-
