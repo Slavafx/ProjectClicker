@@ -354,7 +354,7 @@ while True:
 
         gm.MoneyData = np.append(gm.MoneyData, gm.money)
         gm.TimeData = np.append(gm.TimeData, new_time - start_time)
-        gm.IncomeData = np.append(gm.IncomeData, gm.m1.efficiency+1, 10)
+        gm.IncomeData = np.append(gm.IncomeData, log(1+gm.m1.efficiency))
 
         fig, ax = plt.subplots()
         ax.plot(gm.TimeData, gm.MoneyData, 'k')
