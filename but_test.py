@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from math import *
 from PIL import Image, ImageTk
+import random
 
 root = Tk()
 root['bg'] = 'white'
@@ -352,9 +353,9 @@ while True:
         gm.update_money(1)
         old_time = new_time
 
-        gm.MoneyData = np.append(gm.MoneyData, gm.money)
+        gm.MoneyData = np.append(gm.MoneyData, gm.money*(1+random.randint(-1, 1)*0.03))
         gm.TimeData = np.append(gm.TimeData, new_time - start_time)
-        gm.IncomeData = np.append(gm.IncomeData, log(1+gm.m1.efficiency))
+        gm.IncomeData = np.append(gm.IncomeData, log(gm.m1.efficiency+1)*(1+random.randint(-1, 1)*0.05))
 
         fig, ax = plt.subplots()
         ax.plot(gm.TimeData, gm.MoneyData, 'k')
