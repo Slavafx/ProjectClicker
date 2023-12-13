@@ -28,22 +28,22 @@ def normalise_nums(num):
     if num >= 1000 and num < 1000000:
         num = str(round((num / 1000), 1)) + 'K'
         return num
-    if num > 1000000 and num < 1000000000:
+    if num >= 1000000 and num < 1000000000:
         num = str(round((num / 1000000), 1)) + 'M'
         return num
-    if num > 1000000000 and num < 1000000000000:
+    if num >= 1000000000 and num < 1000000000000:
         num = str(round((num / 1000000000), 1)) + 'B'
         return num
-    if num > 1000000000000 and num < 1000000000000000:
+    if num >= 1000000000000 and num < 1000000000000000:
         num = str(round((num / 1000000000000), 1)) + 'T'
         return num
-    if num > 1000000000000000 and num < 11000000000000000000:
+    if num >= 1000000000000000 and num < 11000000000000000000:
         num = str(round((num / 1000000000000000), 1)) + 'Kv'
         return num
-    if num > 1000000000000000000 and num < 1000000000000000000000:
+    if num >= 1000000000000000000 and num < 1000000000000000000000:
         num = str(round((num / 1000000000000000000), 1)) + 'Sep'
         return num
-    if num > 1000000000000000000000:
+    if num >= 1000000000000000000000:
         num = str(round((num / 1000000000000000000000), 1)) + 'Six'
         return num
 
