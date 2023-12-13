@@ -339,6 +339,47 @@ class Game_Session:
             f"Баллы: {normalise_nums(self.money)}\nБаллы в секунду: {normalise_nums(self.mon_per_second)}\nБаллы за клик: {normalise_nums(self.mon_per_click)}")
 
 
+def Start():
+    root.destroy()
+
+class ToolTip(object):
+    def __init__(self, widget):
+        self.widget = widget
+        self.tipwindow = None
+        self.id = None
+        self.x = self.y = 0
+
+    def showtip(self, text):
+        self.text = text
+        if self.tipwindow or not self.text:
+            return
+        x, y, cx, cy = self.widget.bbox("insert")
+        x = x + self.widget.winfo_rootx() + 57
+        y = y + cy + self.widget.winfo_rooty() +27
+        self.tipwindow = tw = Toplevel(self.widget)
+        tw.wm_overrideredirect(1)
+        tw.wm_geometry("+%d+%d" % (x, y))
+        label = Label(tw, text=self.text, justify=LEFT,
+                      background="#FFFFFF", relief=SOLID, borderwidth=1,
+                      font=("tahoma", "8", "normal"))
+        label.pack(ipadx=1)
+
+    def hidetip(self):
+        tw = self.tipwindow
+        self.tipwindow = None
+        if tw:
+            tw.destroy()
+
+def CreateToolTip(widget, text):
+    toolTip = ToolTip(widget)
+    def enter(event):
+        toolTip.showtip(text)
+    def leave(event):
+        toolTip.hidetip()
+    widget.bind('<Enter>', enter)
+    widget.bind('<Leave>', leave)
+
+
 old_time = 0
 gm = Game_Session(cost1=5, cost2=100, cost3=1000, cost4=100000, cost5=10000000, cost6=100000000, cost7=10000000000, cost8=100000000000, cost9=10000000000000)
 
@@ -353,7 +394,7 @@ while True:
         gm.update_money(1)
         old_time = new_time
 
-        gm.MoneyData = np.append(gm.MoneyData, gm.money*(1+random.randint(-1, 1)*0.03))
+        gm.MoneyData = np.append(gm.MoneyData, gm.money*(1+random.randint(-1, 1)*0.0))
         gm.TimeData = np.append(gm.TimeData, new_time - start_time)
         gm.IncomeData = np.append(gm.IncomeData, log(gm.m1.efficiency+1)*(1+random.randint(-1, 1)*0.05))
 
@@ -370,6 +411,9 @@ while True:
         img = Button(root, image=photo, state=["disabled"])
         img.place(relx = 0.7, rely = 0.05)
         image.close()
+        CreateToolTip(img, text='График баллов от времени\n'
+                                'y = Кол-во баллов\n'
+                                 'x = Время в игре')
 
 
         fig2, ax2 = plt.subplots()
@@ -384,9 +428,21 @@ while True:
         img2 = Button(root, image=photo2, state=["disabled"])
         img2.place(relx=0.7, rely=0.45)
         image2.close()
+        CreateToolTip(img2, text='График производительности\n'
+                                'Данный график логарифмический\n'
+                                'y = log(Производительность+1)*0.05\n'
+                                 'x = Время в игре')
 
-        plt.close(fig = 'all')
+        if (gm.money > 1000000000000):
+            button = Button(compound=CENTER, text="Выпуститься",command=Start,
+                        font=("Comic Sans bold", 16), fg="black", width=20)
+            button.pack()
+            CreateToolTip(button, text='Нажимая эту кнопку вы выпуститесь\n'
+                                       'Ваш прогресс удалится')
+            button.place(relx=0.03, rely=0.79, relwidth=0.12, relheight=0.08)
 
+
+    plt.close(fig='all')
 
 
 
