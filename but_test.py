@@ -25,7 +25,7 @@ def normalise_nums(num):
     if num < 1000:
         num = str(round(num, 1))
         return num
-    if num > 1000 and num < 1000000:
+    if num >= 1000 and num < 1000000:
         num = str(round((num / 1000), 1)) + 'K'
         return num
     if num > 1000000 and num < 1000000000:
